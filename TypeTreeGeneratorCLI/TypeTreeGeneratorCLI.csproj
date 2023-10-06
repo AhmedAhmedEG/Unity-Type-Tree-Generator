@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Mono.Cecil">
+        <HintPath>..\Libs\Mono.Cecil.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AssetsTools.NET.Cpp2IL\AssetsTools.NET.Cpp2IL.csproj" />
+      <ProjectReference Include="..\AssetsTools.NET.MonoCecil\AssetsTools.NET.MonoCecil.csproj" />
+      <ProjectReference Include="..\AssetTools.NET\AssetsTools.NET.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="classdata.tpk">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

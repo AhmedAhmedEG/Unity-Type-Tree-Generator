@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeTreeGeneratorCLI", "TypeTreeGeneratorCLI\TypeTreeGeneratorCLI.csproj", "{59E7E452-25E5-4943-9588-3BD88E7A9D79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetsTools.NET.MonoCecil", "AssetsTools.NET.MonoCecil\AssetsTools.NET.MonoCecil.csproj", "{22810300-DA9B-4AC1-AA4D-650FA218E323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetsTools.NET.Cpp2IL", "AssetsTools.NET.Cpp2IL\AssetsTools.NET.Cpp2IL.csproj", "{705F84EB-4F58-475F-863E-0E41741DE9EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetsTools.NET", "AssetTools.NET\AssetsTools.NET.csproj", "{347430C3-A9D6-4F0A-9A8E-BBED365E3F94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59E7E452-25E5-4943-9588-3BD88E7A9D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E7E452-25E5-4943-9588-3BD88E7A9D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E7E452-25E5-4943-9588-3BD88E7A9D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E7E452-25E5-4943-9588-3BD88E7A9D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22810300-DA9B-4AC1-AA4D-650FA218E323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22810300-DA9B-4AC1-AA4D-650FA218E323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22810300-DA9B-4AC1-AA4D-650FA218E323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22810300-DA9B-4AC1-AA4D-650FA218E323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705F84EB-4F58-475F-863E-0E41741DE9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705F84EB-4F58-475F-863E-0E41741DE9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705F84EB-4F58-475F-863E-0E41741DE9EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705F84EB-4F58-475F-863E-0E41741DE9EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347430C3-A9D6-4F0A-9A8E-BBED365E3F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347430C3-A9D6-4F0A-9A8E-BBED365E3F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347430C3-A9D6-4F0A-9A8E-BBED365E3F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347430C3-A9D6-4F0A-9A8E-BBED365E3F94}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
