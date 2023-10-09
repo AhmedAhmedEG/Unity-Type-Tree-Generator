@@ -129,4 +129,5 @@ A node is a map of four pairs, it starts with "m_Type" for the name of the type 
 
 When you align all of the nodes mentioned in the previous section based on their levels, you will see that the tree shape of that type is:-
 
-![image](https://github.com/AhmedAhmedEG/UnityTypeTreeGenerator/assets/16827679/8d0b65e4-dc24-4023-9c22-9cc3f2b2a067)
+![Screenshot_2](https://github.com/AhmedAhmedEG/UnityTypeTreeGenerator/assets/16827679/526e8784-bfaf-4755-98e4-b0f43361a06d)
+
