@@ -1,4 +1,4 @@
-# UnityTypeTreeGenerator
+# Unity Type Tree Generator
 Wrapper for AssetTools.NET library to generates type trees for MonoBehavior objects in Unity as JSON files, it support both Mono and IL2CPP backends.
 
 # Usage
