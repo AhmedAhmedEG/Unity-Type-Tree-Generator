@@ -125,6 +125,8 @@ A type tree is a three layer neasted-map-array data structure (map of arrays of 
 ```
 
 # What's a Node?
-A node is a map of four pairs, it starts with "m_Type" for the name of the type the node represents, "m_Name" for the name of variable assigned with that type, "m_Metaflag" which is a flag used by Unity editor to assign spacific properties, there's only one important flag that changes how the bytes being parsed, lastly "m_Level" which spacifies the neasting level of the node relative to the nodes behind it, when you align all of those nodes based on their levels, you will see that the tree shape of that type is:-
+A node is a map of four pairs, it starts with "m_Type" for the name of the type the node represents, "m_Name" for the name of variable assigned with that type, "m_Metaflag" which is a flag used by Unity editor to assign spacific properties, there's only one important flag that changes how the bytes being parsed, lastly "m_Level" which spacifies the neasting level of the node relative to the nodes behind it.
+
+When you align all of the nodes mentioned in the previous section based on their levels, you will see that the tree shape of that type is:-
 
 ![image](https://github.com/AhmedAhmedEG/UnityTypeTreeGenerator/assets/16827679/8d0b65e4-dc24-4023-9c22-9cc3f2b2a067)
