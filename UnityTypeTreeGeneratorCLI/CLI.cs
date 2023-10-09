@@ -1,4 +1,5 @@
 ﻿using AssetsTools.NET.Extra;
+using System.Reflection;
 using System.Text.Json;
 using AssetsTools.NET;
 using Cpp2IL.Core;
@@ -61,8 +62,8 @@ public class UnityTypeTreeGenerator
             unityVersion = new UnityVersion(unityVersionString);
         }
         
-        // Initialize the class database to be used later to get template fields for unity base types. 
-        var stream = File.OpenRead("classdata.tpk");
+        // Initialize the class database to be used later to get template fields for unity base types.
+        var stream = File.OpenRead(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)!, "classdata.tpk"));
         var classPackage = new ClassPackageFile();
         classPackage.Read(new AssetsFileReader(stream));
         
@@ -103,7 +104,7 @@ public class UnityTypeTreeGenerator
         return typeTemplate;
     }
     
-    // Returns a dictionary of type name and type tree pairs for a given list of types.
+    // Returns a dictionary of type name and type tree pairs for a given assembly name.
     private Dictionary<string, List<Dictionary<string, object>>> GenerateAssemblyTypeTree(string assemblyName)
     {
         var typeTree = new Dictionary<string, List<Dictionary<string, object>>>();
@@ -126,8 +127,15 @@ public class UnityTypeTreeGenerator
     private List<AssetTypeTemplateField> GenerateTypeTemplates(TypeDefinition type)
     {
         var typeTemplates = new List<AssetTypeTemplateField>();
-        var baseTypes = GetBaseTypes(type);
+        var generatorTypeTemplates = monoTemplateFieldsGenerator.Read(assembliesMap[type.Scope.Name],
+                                                                                              type.Namespace,
+                                                                                              type.Name,
+                                                                                              unityVersion);
         
+        // If the generator resulted in nothing, this means this type is not serializable in the first place, so ignore it.
+        if (generatorTypeTemplates.Count == 0) return typeTemplates;
+        
+        var baseTypes = GetBaseTypes(type);
         foreach (var typeTemplate in baseTypes.Select(QueryClassDatabase))
         {   
             // template fields of type component are not needed for deserialization.
@@ -142,12 +150,9 @@ public class UnityTypeTreeGenerator
         
         /* If there's not a single type template for any of the base types, it means this type is not supported, thus,
         do not generate type templates for the type it self and return an empty list. */
-        if (typeTemplates.Any())
-            typeTemplates.AddRange(monoTemplateFieldsGenerator.Read(assembliesMap[type.Scope.Name],
-                                   type.Namespace,
-                                   type.Name,
-                                   unityVersion));
+        if (!typeTemplates.Any()) return typeTemplates;
         
+        typeTemplates.AddRange(generatorTypeTemplates);
         return typeTemplates;
     }
     
