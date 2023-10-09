@@ -15,16 +15,32 @@ Type -> Class
 Field -> Attribute -> Class Variable
 Method -> Class Function
 Object -> Class Instance
-```
-Now with that in mind, assemblies are simply a collections of types, every type have fields, every field have a spacific data type, to deserialize objects that inherite from MonoBehavior type in unity game's asset files, we need info about the fields of those objects to be able parser them, normally but not always, when you try to read MonoBehavior objects from asset file, what you get only is the location and bounds of a portion of bytes in that asset file where this MonoBehavior object exists, this portion is a mix of all of field values, but you cannot make sense of those bytes unless you know what kind of fields exists in this object? what's their order? how much bytes you should read for every field? this is where type trees comes into play!
 
-For example, here a class want to serialize:-
+Serialization -> Writing an object bytes on disk in a way that's reversable.
+Deserialization -> Reading back a serialized object from disk.
+```
+Now with that in mind, assemblies are simply a collections of types, every type have fields, every field have a spacific data type, to deserialize objects that inherites from MonoBehavior type in unity game's asset files, we need info about the fields of those objects to be able parse them, normally but not always, when you try to read MonoBehavior objects from an asset file, what you get only is the location and bounds of a portion of bytes in that asset file where this MonoBehavior object exists, this portion is a mix of all of field values, but you cannot make sense of those bytes unless you know what kind of fields exists in this object? what's the order to read them in? how much bytes you should read for every field? here is where type trees comes into play.
+
+For example, here's a type, called "B", that we want to serialize an object based on it:-
+```
+class A
+{
+    public int Number;
+    public decimal Number2;
+}
+
+class B : A
+{
+    public bool Flag;
+}
 ```
 
-```
+Type "B" itself have a single boolian field (1 byte), also it inherits from type "A" which have two fields, an integer field (8 bytes), and a decimal field (16 bytes), assuming I will take them in this order, we can serialize an object based on type "B" into a single byte stream where the first byte is the boolian, the 8 bytes after it is the integer and the next 16 bytes are the decimal.
+
+Now imagine I have given you this stream of bytes, without any info on what type "B" fields are and what it inherites from, can you parse the bytes? abvoiusly not, you will need a type tree that tells you what type "B" fields are and what their datatype is to be able to parse those bytes back to the object.
 
 # How Type Tree Looks Like?
-Now let's start, a type tree is a three layer neasted-map-array data structure (map of arrays of maps to be spacific), there's a type tree per assembly, a single type tree starts with a root map, that map have pairs of type names as keys, and node arrays as values, every node is a map of four pairs, here's an example of a single type tree root map pair:-
+A type tree is a three layer neasted-map-array data structure (map of arrays of maps to be spacific), there's a type tree per assembly, a single type tree starts with a root map, that map have pairs of type names as keys, and node arrays as values, every node is a map of four pairs, here's an example of a single type tree root map pair:-
 ```
 "CustomSignalExtendReceiver": [
     {
@@ -109,3 +125,6 @@ Now let's start, a type tree is a three layer neasted-map-array data structure (
 ```
 
 # What's a Node?
+A node is a map of four pairs, it starts with "m_Type" for the name of the type the node represents, "m_Name" for the name of variable assigned with that type, "m_Metaflag" which is a flag used by Unity editor to assign spacific properties, there's only one important flag that changes how the bytes being parsed, lastly "m_Level" which spacifies the neasting level of the node relative to the nodes behind it, when you align all of those nodes based on their levels, you will see that the tree shape of that type is:-
+
+![image](https://github.com/AhmedAhmedEG/UnityTypeTreeGenerator/assets/16827679/8d0b65e4-dc24-4023-9c22-9cc3f2b2a067)
