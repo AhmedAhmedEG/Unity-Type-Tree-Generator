@@ -5,6 +5,7 @@ Wrapper for AssetTools.NET library to generates type trees for MonoBehavior obje
 UnityTypeTreeGenerator.exe -p GAME_PATH -o OUTPUT_PATH
 
 > You can optionally add (-v UNITY_VERSION) in case you want to inforce a spacific Unity version, normally Unity version will get automaticlly detected using Cpp2IlApi.DetermineUnityVersion helper function.
+> If you encountered errors later while using the type trees, manually generate the dummy dlls using IL2CPPDumper and leave them on Managed folder and they will be auto detected, as Cpp2IL still have some bugs and misses some C# attributes.
 
 # What's a Type Tree?
 
