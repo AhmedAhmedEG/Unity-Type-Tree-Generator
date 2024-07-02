@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AssetTools.NET\AssetsTools.NET.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="AssetsTools.NET">
       <HintPath>..\Libs\AssetsTools.NET.dll</HintPath>
     </Reference>
